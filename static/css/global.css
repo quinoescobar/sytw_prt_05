@@ -1,0 +1,51 @@
+body{
+  background-image: url(images/iceberg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+h1,a{
+  text-align: center;
+  font-family: Arial;
+  font-size: 3em;
+  padding-top: 25%;
+  padding-bottom: 4%;
+  color: white;
+}
+
+input{
+  text-align: right;
+  padding: 5px  5px;
+  font-size:large;
+  margin-left: 8%;
+  width: 50%;
+
+}
+
+th{
+  font-family: Arial;
+  font-size: 1.2em;
+  color: white;
+}
+
+th, td{
+  padding-bottom: 5%;
+  color: white;
+}
+
+table {
+  margin-left: 14%;
+}
+
+#converted {
+  font-family: Arial;
+  font-weight: bold;
+}
+span[col="rd"] {
+  font-size: 22px;
+   color: red;
+}
+
+span[col="gr"] {
+  font-size: 30px;
+   color: green;
+}
