@@ -15,7 +15,8 @@ app.set('view engine', 'ejs');
 app.set('layout', 'layout');
 // use res.render to load up an ejs view file
 
-app.use(express.static('static'));
+// app.use(express.static('static'));
+app.use(express.static('.'));
 app.use(expressLayouts);
 
 app.set('port', (process.env.PORT || 8080));
