@@ -32,10 +32,10 @@ app.listen(8080);
 console.log('8080 es el puerto mágico :3');
 
 
-// var server = app.listen(8080, function () {
-//   var host = server.address().address;
-//   var port = server.address().port;
+ var server = app.listen(8080, function () {
+var host = server.address().address;
+  var port = server.address().port;
 
   // console.log('Corriendo en la dir:port == http://10.6.128.92:8080', host, port);
   console.log("Corriendo en la localhost:port ==:" + app.get('port'));
-// });
+ });
