@@ -28,7 +28,7 @@ app.get('/', function(req, res){
 	res.render('pages/index.ejs', { title: "Index"});
 });
 
-//app.listen(8080);
+app.listen(8080);
 console.log('8080 es el puerto mágico :3');
 
 
