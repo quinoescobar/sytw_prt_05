@@ -33,120 +33,39 @@ function Temperatura(valor,tipo)
 
 Temperatura.prototype= new Medida();
 
-Temperatura.prototype.Celsiuss = function ()
+Temperatura.prototype.Celsius = function ()
 {
-  console.error("Dentro de Celsius");
+  //AQUI SE PASA DE Celsius A Farenheit
+  //result = (num * 9/5)+32;
   var calculado = (this.getValor() * 9/5)+32;
   calculado = calculado.toFixed(1)+" Farenheit";
 
   return calculado;
 };
 
-Temperatura.prototype.Farenheits = function ()
+Temperatura.prototype.Farenheit = function ()
 {
-  console.error("Dentro de Farenheit");
+  //AQUI SE PASA DE Farenheit A Celsius
+  //result = (num - 32)*5/9;
   var calculado2= (this.getValor() - 32)*5/9;
   calculado2 = calculado2.toFixed(1)+" Celsius";
 
   return calculado2;
 };
 
-Temperatura.prototype.Celsius = function (wValor)
-{
-  console.error("Dentro de Celsius");
-  var calculado = (wValor * 9/5)+32;
-  calculado = calculado.toFixed(1)+" Farenheit";
-
-  return calculado;
-};
-
-Temperatura.prototype.Farenheit = function (wValor)
-{
-  console.error("Dentro de Farenheit");
-  var calculado2= (wValor - 32)*5/9;
-  calculado2 = calculado2.toFixed(1)+" Celsius";
-
-  return calculado2;
-};
-
-function calcularW()
-{
-  if (window.Worker)
-  { //check if Browser supports the Worker api.
-  	// Requires script name as input
-    console.log("Los Web Worker  son soporatos.");
-    var myWorker = new Worker("temperatura.js");
-    //A web worker is a JavaScript running in the background,
-    //without affecting the performance of the page.
-    recibido = descomponerInput();
-  	myWorker.postMessage([recibido.valor,recibido.tipo]);
-    console.log('Mensaje enviado al worker :'+ recibido.valor + " "+ recibido.tipo);
-    myWorker.onmessage = function(e)
-    {
-      console.log('Mensaje recibido del worker');
-      console.log(e.data);
-      converted.innerHTML = e.data;
-    };
-
-
-  }else
-  {
-    console.log("Los Web Worker no son soporatos.");
-    //Ya no funciona Calcular(), se ha modificado los métodos Celsius and Farenheit
-    Calcular();
-  }
-}
-
-self.onmessage = function(objeto) {
-  var valorW = objeto.data[0];
-  var tipoW = objeto.data[1];
-  console.log('OBJETO = ' + valorW +'  '+tipoW);
-  console.log("Convirtiendo Temperatura");
-  var result;
-  var convertir = new Temperatura();
-
-  if( tipoW == 'C' || tipoW =='c'){
-
-    result = convertir.Celsius(valorW);
-  }else{
-    result = convertir.Farenheit(valorW);
-  }
-
-  self.postMessage(result);
-};
-
-function descomponerInput()
-{
-  var result;
-  var original = document.getElementById("original");
-  var temp = original.value;
-  var mejorRegex = /(^[-+]?[0-9]*\.?[0-9]+(?:[eE][-+]?[0-9]+)?)\s*([fFcC])/;
-  var x = temp.match(mejorRegex);
-  if (x)
-  {
-    var ingresado = new Temperatura();
-    ingresado.setValor(parseFloat(x[1]));
-    ingresado.setTipo(x[2]);
-    //console.log(ingresado.getValor()+"   "+ingresado.getTipo());
-    return(ingresado);
-  }
-  else {
-    console.error("ERROR, parece que ha ingresado algo que no debe, [-,+] [Número] [Medida] e.g: '-4.2C' ");
-    converted.innerHTML = "¡ERROR! Intente con valores correctos [-,+] [Número] [Medida] e.g: '-4.2C' ";
-  }
-
-}
-
-
+//ACOMODAR CÓDIGO PARA USAR LOS GETS Y LOS SETS
 function calcular()
 {
   var result;
   var original = document.getElementById("original");
   var temp = original.value;
-
+  // alert(temp);
+  // Empiece por - +, pude o no puede
+  //Siguiente digito si o si
+  //
   var regexp = /([-+]?\d+(?:\.\d*)?)\s*([fFcC])/;
   var mejorRegex = /(^[-+]?[0-9]*\.?[0-9]+(?:[eE][-+]?[0-9]+)?)\s*([fFcC])/;
-
+//poner parentesis sin memoria en xsub2
   var x = temp.match(mejorRegex);
 
   if (x)
@@ -154,16 +73,28 @@ function calcular()
     var ingresado = new Temperatura();
     ingresado.setValor(parseFloat(x[1]));
     ingresado.setTipo(x[2]);
-
+    // num = parseFloat(num);
     if (ingresado.getTipo() == 'c' || ingresado.getTipo() == 'C') {
-
-      result = ingresado.Celsiuss();
+      // result = (num * 9/5)+32;
+      //-------toFixed()------------
+      // Convert a number into a string, keeping only two decimals:
+      // var num = 5.56789;
+      // var n = num.toFixed(2);
+      //
+      // The result of n will be:
+      // 5.57
+      // aux= ingresado.Celsius();
+      // result.setValor(aux);
+      // result.setTipo("Farenheit");
+      //result = ingresado.Celsius() + " Farenheit";
+      // result = ingresado.toFixed(1)+" Farenheit";
+      result = ingresado.Celsius();
     }
     else {
-      result = ingresado.Farenheits();
-
+      result = ingresado.Farenheit();
+      // result = ingresado.Farenheit(1)+" Celsius";
     }
-
+      //result = result.getValor() + " " + result.getTipo();
       converted.innerHTML = result;
       console.log(result);
   }
