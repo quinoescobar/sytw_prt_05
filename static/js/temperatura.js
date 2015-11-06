@@ -3,13 +3,13 @@
 function Medida()
 {
   console.log(arguments);
-  var argumentosEntrada = arguments;
+  var argumentosEntrada = arguments[0];
   var numeroArgumentos = argumentosEntrada.length;
 
   if(numeroArgumentos==1){
     console.log("Un solo argumento.");
     var mejorRegex = /(^[-+]?[0-9]*\.?[0-9]+(?:[eE][-+]?[0-9]+)?)\s*([fFcC])/;
-    var aux = arguments[0].match(mejorRegex);
+    var aux = argumentosEntrada[0].match(mejorRegex);
     this.valor = aux[0];
     this.tipo = aux[1];
   }
@@ -40,12 +40,12 @@ Medida.prototype.setValor = function (arg)
    this.valor=arg;
 };
 
-function Temperatura(valor,tipo)
+function Temperatura()
 {
-  Medida.call(this,valor,tipo);
+  Medida.call(this,arguments);
 }
 
-Temperatura.prototype= new Medida();
+// Temperatura.prototype= new Medida();
 
 
 
@@ -91,15 +91,15 @@ function descomponerInput()
 
 }
 //ACOMODAR CÓDIGO PARA USAR LOS GETS Y LOS SETS
-Temperatura.prototype.calcular = function(){
+Temperatura.prototype.calcularxxx = function(){
   // console.log("argumento que le llega a calcular : "+original);
   var result;
   //var original = document.getElementById("original");
   // var temp = original;
   // alert(temp);
-  var regexp = /([-+]?\d+(?:\.\d*)?)\s*([fFcC])/;
-  var mejorRegex = /(^[-+]?[0-9]*\.?[0-9]+(?:[eE][-+]?[0-9]+)?)\s*([fFcC])/;
-  var x = temp.match(mejorRegex);
+  // var regexp = /([-+]?\d+(?:\.\d*)?)\s*([fFcC])/;
+  // var mejorRegex = /(^[-+]?[0-9]*\.?[0-9]+(?:[eE][-+]?[0-9]+)?)\s*([fFcC])/;
+  // var x = temp.match(mejorRegex);
   if (x)
   {
     var ingresado = new Temperatura();
@@ -136,5 +136,30 @@ Temperatura.prototype.calcular = function(){
       console.error("missing target");
       converted.innerHTML = "¡ERROR! Intente con valores correctos [-,+] [Número] [Medida] e.g: '-4.2C' ";
   }
+};
+
+Temperatura.prototype.calcular = function(){
+  var result;
+  console.log("tipo :" + this.tipo);
+  console.log("valor :" + this.valor);
+  console.log(calculado);
+  if (this.getTipo == 'c' || this.getTipo() == 'C') {
+    // result = Celsius();
+    // return result;
+    var calculado = (this.getValor() * 9/5)+32;
+    calculado = calculado.toFixed(1)+" Farenheit";
+    console.log(calculado);
+    return calculado;
+
+  }
+  else {
+    var calculado2= (this.getValor() - 32)*5/9;
+    calculado2 = calculado2.toFixed(1)+" Celsius";
+    console.log(calculado2);
+    return calculado2;
+    // result = Farenheit();
+    // return result;
+  }
+
 };
 module.exports = Temperatura;
