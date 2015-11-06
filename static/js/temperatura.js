@@ -10,8 +10,8 @@ function Medida()
     console.log("Un solo argumento.");
     var mejorRegex = /(^[-+]?[0-9]*\.?[0-9]+(?:[eE][-+]?[0-9]+)?)\s*([fFcC])/;
     var aux = argumentosEntrada[0].match(mejorRegex);
-    this.valor = aux[0];
-    this.tipo = aux[1];
+    this.valor = aux[1];
+    this.tipo = aux[2];
   }
   else if(numeroArgumentos==2){
     console.log("Dos argumentos.");
@@ -53,7 +53,7 @@ Temperatura.prototype.Celsius = function ()
 {
   //AQUI SE PASA DE Celsius A Farenheit
   //result = (num * 9/5)+32;
-  var calculado = (this.getValor() * 9/5)+32;
+  var calculado = (this.valor * 9/5)+32;
   calculado = calculado.toFixed(1)+" Farenheit";
 
   return calculado;
@@ -63,7 +63,7 @@ Temperatura.prototype.Farenheit = function ()
 {
   //AQUI SE PASA DE Farenheit A Celsius
   //result = (num - 32)*5/9;
-  var calculado2= (this.getValor() - 32)*5/9;
+  var calculado2= (this.valor - 32)*5/9;
   calculado2 = calculado2.toFixed(1)+" Celsius";
 
   return calculado2;
@@ -142,24 +142,17 @@ Temperatura.prototype.calcular = function(){
   var result;
   console.log("tipo :" + this.tipo);
   console.log("valor :" + this.valor);
-  console.log(calculado);
-  if (this.getTipo == 'c' || this.getTipo() == 'C') {
-    // result = Celsius();
-    // return result;
-    var calculado = (this.getValor() * 9/5)+32;
-    calculado = calculado.toFixed(1)+" Farenheit";
-    console.log(calculado);
-    return calculado;
+  this.Celsius();
+  if (this.tipo == 'c' || this.tipo == 'C') {
+    result = this.Celsius();
+
+      }
+  else {
+    result = this.Farenheit();
 
   }
-  else {
-    var calculado2= (this.getValor() - 32)*5/9;
-    calculado2 = calculado2.toFixed(1)+" Celsius";
-    console.log(calculado2);
-    return calculado2;
-    // result = Farenheit();
-    // return result;
-  }
+  console.log("Resultado :" + result);
+  return result;
 
 };
 module.exports = Temperatura;
