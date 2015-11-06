@@ -32,7 +32,7 @@ app.get('/', function(req, res){
 
 app.post('/', function(req, res){
 	var temper = new Temperatura();
-	var respuesta = temper.calcular();
+	var respuesta = temper.calcular(req.body.original);
 	// res.render('pages/index.ejs', { title: "Index"});
 	res.render('pages/index.ejs',{title:"Conversor de Temperatura", result: respuesta});
 });

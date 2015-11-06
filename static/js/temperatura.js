@@ -1,20 +1,20 @@
 " use strict";
 
-function Medida(valor,tipo)
+function Medida()
 {
-  this.valor=valor;
-  this.tipo=tipo;
-  // var argumentosEntrada = arguments[0];
-  // var numeroArgumentos = argumentosEntrada.length;
-  // if(numeroArgumentos==1){
-  //   console.log("Un solo argumento.");
-  //   descomponerInput();
-  // }
-  // else if(numeroArgumentos==2){
-  //   console.log("Dos argumentos.");
-  //   this.valor=argumentosEntrada[0];
-  //   this.tipo=argumentosEntrada[1];
-  // }
+  console.log(arguments);
+  var argumentosEntrada = arguments;
+  var numeroArgumentos = argumentosEntrada.length;
+
+  if(numeroArgumentos==1){
+    console.log("Un solo argumento.");
+    descomponerInput();
+  }
+  else if(numeroArgumentos==2){
+    console.log("Dos argumentos.");
+    this.valor=argumentosEntrada[0];
+    this.tipo=argumentosEntrada[1];
+  }
 }
 
 Medida.prototype.getTipo = function ()
@@ -37,9 +37,9 @@ Medida.prototype.setValor = function (arg)
    this.valor=arg;
 };
 
-function Temperatura(valor,tipo)
+function Temperatura()
 {
-  Medida.call(this,valor,tipo);
+  Medida.call(this,arguments);
 }
 
 Temperatura.prototype= new Medida();
@@ -88,11 +88,10 @@ function descomponerInput()
 
 }
 //ACOMODAR CÓDIGO PARA USAR LOS GETS Y LOS SETS
-function calcular()
-{
+Temperatura.prototype.calcular = function(original){
   var result;
-  var original = document.getElementById("original");
-  var temp = original.value;
+  //var original = document.getElementById("original");
+  var temp = original;
   // alert(temp);
   // Empiece por - +, pude o no puede
   //Siguiente digito si o si
@@ -100,11 +99,11 @@ function calcular()
   var regexp = /([-+]?\d+(?:\.\d*)?)\s*([fFcC])/;
   var mejorRegex = /(^[-+]?[0-9]*\.?[0-9]+(?:[eE][-+]?[0-9]+)?)\s*([fFcC])/;
 //poner parentesis sin memoria en xsub2
-  var x = temp.match(mejorRegex);
+  // var x = temp.match(mejorRegex);
 
   if (x)
   {
-    var ingresado = new Temperatura();
+    var ingresado = new Temperatura(temp);
     // ingresado.setValor(parseFloat(x[1]));
     // ingresado.setTipo(x[2]);
     // num = parseFloat(num);
@@ -136,5 +135,5 @@ function calcular()
       console.error("missing target");
       converted.innerHTML = "¡ERROR! Intente con valores correctos [-,+] [Número] [Medida] e.g: '-4.2C' ";
   }
-}
+};
 module.exports = Temperatura;
