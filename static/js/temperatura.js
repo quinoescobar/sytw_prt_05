@@ -8,7 +8,10 @@ function Medida()
 
   if(numeroArgumentos==1){
     console.log("Un solo argumento.");
-    descomponerInput();
+    var mejorRegex = /(^[-+]?[0-9]*\.?[0-9]+(?:[eE][-+]?[0-9]+)?)\s*([fFcC])/;
+    var aux = arguments[0].match(mejorRegex);
+    this.valor = aux[0];
+    this.tipo = aux[1];
   }
   else if(numeroArgumentos==2){
     console.log("Dos argumentos.");
@@ -37,9 +40,9 @@ Medida.prototype.setValor = function (arg)
    this.valor=arg;
 };
 
-function Temperatura()
+function Temperatura(valor,tipo)
 {
-  Medida.call(this,arguments);
+  Medida.call(this,valor,tipo);
 }
 
 Temperatura.prototype= new Medida();
@@ -88,26 +91,22 @@ function descomponerInput()
 
 }
 //ACOMODAR CÓDIGO PARA USAR LOS GETS Y LOS SETS
-Temperatura.prototype.calcular = function(original){
+Temperatura.prototype.calcular = function(){
+  // console.log("argumento que le llega a calcular : "+original);
   var result;
   //var original = document.getElementById("original");
-  var temp = original;
+  // var temp = original;
   // alert(temp);
-  // Empiece por - +, pude o no puede
-  //Siguiente digito si o si
-  //
   var regexp = /([-+]?\d+(?:\.\d*)?)\s*([fFcC])/;
   var mejorRegex = /(^[-+]?[0-9]*\.?[0-9]+(?:[eE][-+]?[0-9]+)?)\s*([fFcC])/;
-//poner parentesis sin memoria en xsub2
-  // var x = temp.match(mejorRegex);
-
+  var x = temp.match(mejorRegex);
   if (x)
   {
-    var ingresado = new Temperatura(temp);
+    var ingresado = new Temperatura();
     // ingresado.setValor(parseFloat(x[1]));
     // ingresado.setTipo(x[2]);
     // num = parseFloat(num);
-    if (ingresado.getTipo() == 'c' || ingresado.getTipo() == 'C') {
+    if (this.getTipo() == 'c' || this.getTipo() == 'C') {
       // result = (num * 9/5)+32;
       //-------toFixed()------------
       // Convert a number into a string, keeping only two decimals:
@@ -121,15 +120,17 @@ Temperatura.prototype.calcular = function(original){
       // result.setTipo("Farenheit");
       //result = ingresado.Celsius() + " Farenheit";
       // result = ingresado.toFixed(1)+" Farenheit";
-      result = ingresado.Celsius();
+      result = this.Celsius();
     }
     else {
-      result = ingresado.Farenheit();
+      result = this.Farenheit();
       // result = ingresado.Farenheit(1)+" Celsius";
     }
       //result = result.getValor() + " " + result.getTipo();
-      converted.innerHTML = result;
-      console.log(result);
+
+      console.log("retornado desde calcular: "+result);
+      return result;
+
   }
   else {
       console.error("missing target");

@@ -31,10 +31,10 @@ app.get('/', function(req, res){
 
 
 app.post('/', function(req, res){
-	var temper = new Temperatura();
-	var respuesta = temper.calcular(req.body.original);
+	var temper = new Temperatura(req.body.original);
+	var respuesta = temper.calcular();
 	// res.render('pages/index.ejs', { title: "Index"});
-	res.render('pages/index.ejs',{title:"Conversor de Temperatura", result: respuesta});
+	res.render('pages/index',{title:"Conversor de Temperatura", result: respuesta});
 });
 app.listen(8080);
 console.log('8080 es el puerto mágico :3');
