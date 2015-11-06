@@ -2,31 +2,13 @@
   <a href="https://quinoescobar.github.io">Página del Autor</a>
   <a href="https://github.com/quinoescobar/sytw_prt_03">Enlace al Repositorio</a>
   <h1>Calculadora de Temperatura</h1>
-<div id="divConverter">
-  <h2><%- title %></h2>
-  <form id="formConverter" action="/" method="post">
+  <div id="divConverter">
+    <h2><%- title %></h2>
+    <form id="formConverter" action="/" method="post">
+      <label for="calcular">Ingrese la Temperatura (e.g: 90F, 37C, -3.14f):</label>
 
-    <input name="calcular" value="" id="original" autofocus onchange="calcular();" placeholder="434F" size="50">
-    <button type="submit" name="button">Convertir</button>
-  </form>
-
-</div>
-
-  <table>
-    <tr>
-      <th>
-        Ingrese la Temperatura (e.g: 90F, 37C, -3.14f):
-      </th>
-      <td>
-        <input name="calcular" value="" id="original" autofocus onchange="calcular();" placeholder="434F" size="50">
-      </td>
-    </tr>
-    <tr>
-      <th>
-        Resultado, temperatura convertida:
-      </th>
-      <td><span class="output" id="converted"></span></td>
-    </tr>
-  </table>
-
+      <input name="calcular" value="" id="original" autofocus onchange="calcular();" placeholder="434F" size="50">
+      <button type="submit" name="button">Convertir</button>
+    </form>
+  </div>
 </body>

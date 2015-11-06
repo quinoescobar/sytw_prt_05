@@ -5,6 +5,7 @@ var app = express();
 
 var path = require('path');
 var expressLayouts = require('express-ejs-layouts');
+var Temperatura = require("./static/js/temperatura.js");
 
 app.set('views', path.join(__dirname, 'views'));
 

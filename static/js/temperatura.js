@@ -44,6 +44,8 @@ function Temperatura(valor,tipo)
 
 Temperatura.prototype= new Medida();
 
+
+
 Temperatura.prototype.Celsius = function ()
 {
   //AQUI SE PASA DE Celsius A Farenheit
@@ -135,3 +137,4 @@ function calcular()
       converted.innerHTML = "¡ERROR! Intente con valores correctos [-,+] [Número] [Medida] e.g: '-4.2C' ";
   }
 }
+module.exports = Temperatura;
