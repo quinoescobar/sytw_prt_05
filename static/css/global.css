@@ -27,8 +27,28 @@ th{
   color: white;
 }
 
+button{
+  margin-right: 20%;
+  float:  right;
+}
+
 th, td{
   padding-bottom: 5%;
+  color: white;
+}
+
+label{
+  font-size: 1.2em;
+  font-family: Arial;
+  font-weight: bold;
+  color: white;
+}
+
+span{
+  margin-left: 40%;
+  font-size: 1.2em;
+  font-family: Arial;
+  font-weight: bold;
   color: white;
 }
 
