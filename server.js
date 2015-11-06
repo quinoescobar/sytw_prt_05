@@ -28,6 +28,13 @@ app.get('/', function(req, res){
 	res.render('pages/index.ejs', { title: "Index"});
 });
 
+
+app.post('/', function(req, res){
+	var temper = new Temperatura();
+	var respuesta = temper.calcular();
+	// res.render('pages/index.ejs', { title: "Index"});
+	res.render('pages/index.ejs',{title:"Conversor de Temperatura", result: respuesta});
+});
 app.listen(8080);
 console.log('8080 es el puerto mágico :3');
 

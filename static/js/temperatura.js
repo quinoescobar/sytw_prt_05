@@ -4,6 +4,17 @@ function Medida(valor,tipo)
 {
   this.valor=valor;
   this.tipo=tipo;
+  // var argumentosEntrada = arguments[0];
+  // var numeroArgumentos = argumentosEntrada.length;
+  // if(numeroArgumentos==1){
+  //   console.log("Un solo argumento.");
+  //   descomponerInput();
+  // }
+  // else if(numeroArgumentos==2){
+  //   console.log("Dos argumentos.");
+  //   this.valor=argumentosEntrada[0];
+  //   this.tipo=argumentosEntrada[1];
+  // }
 }
 
 Medida.prototype.getTipo = function ()
@@ -53,6 +64,27 @@ Temperatura.prototype.Farenheit = function ()
   return calculado2;
 };
 
+function descomponerInput()
+{
+  var result;
+  var original = document.getElementById("original");
+  var temp = original.value;
+  var mejorRegex = /(^[-+]?[0-9]*\.?[0-9]+(?:[eE][-+]?[0-9]+)?)\s*([fFcC])/;
+  var x = temp.match(mejorRegex);
+  if (x)
+  {
+    var ingresado = new Temperatura();
+    ingresado.setValor(parseFloat(x[1]));
+    ingresado.setTipo(x[2]);
+    //console.log(ingresado.getValor()+"   "+ingresado.getTipo());
+    return(ingresado);
+  }
+  else {
+    console.error("ERROR, parece que ha ingresado algo que no debe, [-,+] [Número] [Medida] e.g: '-4.2C' ");
+    converted.innerHTML = "¡ERROR! Intente con valores correctos [-,+] [Número] [Medida] e.g: '-4.2C' ";
+  }
+
+}
 //ACOMODAR CÓDIGO PARA USAR LOS GETS Y LOS SETS
 function calcular()
 {
@@ -71,8 +103,8 @@ function calcular()
   if (x)
   {
     var ingresado = new Temperatura();
-    ingresado.setValor(parseFloat(x[1]));
-    ingresado.setTipo(x[2]);
+    // ingresado.setValor(parseFloat(x[1]));
+    // ingresado.setTipo(x[2]);
     // num = parseFloat(num);
     if (ingresado.getTipo() == 'c' || ingresado.getTipo() == 'C') {
       // result = (num * 9/5)+32;
